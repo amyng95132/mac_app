@@ -1,0 +1,62 @@
+Just to test if MacBook Pro can connect to GitHub.
+
+Set up GitHub on Mac
+-------------------
+1. Install git-osx-installer
+
+2. add ssh key
+Amys-MacBook-Pro:~ root# cd ~/
+Amys-MacBook-Pro:~ root# ssh-keygen -t rsa
+Generating public/private rsa key pair.
+Enter file in which to save the key (/var/root/.ssh/id_rsa): 
+Created directory '/var/root/.ssh'.
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /var/root/.ssh/id_rsa.
+Your public key has been saved in /var/root/.ssh/id_rsa.pub.
+The key fingerprint is:
+57:e5:7a:82:a3:39:0c:d3:04:21:61:f4:49:b9:5c:1d root@Amys-MacBook-Pro.local
+The key's randomart image is:
++--[ RSA 2048]----+
+|   .=.+o .E.  .  |
+|   . +.o. .  o   |
+|     .oo.   . .  |
+|      oo   o .   |
+|      o S + o .  |
+|       + + . o   |
+|        =        |
+|         .       |
+|                 |
++-----------------+
+Amys-MacBook-Pro:~ root# cat ~/.ssh/id_rsa.pub | pbcopy
+Amys-MacBook-Pro:~ root# cd ~/.ssh/                   
+Amys-MacBook-Pro:.ssh root# ls
+id_rsa		id_rsa.pub
+Amys-MacBook-Pro:.ssh root# cp id_rsa.pub id_rsa_backup 
+Amys-MacBook-Pro:.ssh root# cat id_rsa_backup 
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDA4dubWV/dANvcUdEFxQ90g9KO5JmxdjVpmycDtmpaEztNL2cgKOB08GIGvZJ3Kr5oAFH4BbVAbnMbJT6J/577Z+kA8A41WZJ1UceVtLE0+05OD74xDQNNilN3dXC2Bf+A2sk49XU6ZUXprHZmQnu3rC0m+W97nzRWPgVWl6PHUBW0BU4iT9G+pFA+ko3ytTukKpBXe7DKWBHVbgUG7lzv70vs2af8gGNE4GldWCZ48nHgrlYinMSVxv5b+bEBOEBEuS88w+I66GCwO4DhonSGHPHoTF/SoRBJM/KvtdYLszT/0b8Eey3NvfHBhdneC0/4UdUE9JFYoNzAC3bLcP+r root@Amys-MacBook-Pro.local
+
+3. Add the generated ssh key to GitHub
+amyng95132 -> Settings -> SSH Keys
+
+4. Test the connection to GitHub
+Amys-MacBook-Pro:.ssh root# ssh -T git@github.com
+The authenticity of host 'github.com (192.30.252.129)' can't be established.
+RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added 'github.com,192.30.252.129' (RSA) to the list of known hosts.
+Enter passphrase for key '/var/root/.ssh/id_rsa': 
+Hi amyng95132! You've successfully authenticated, but GitHub does not provide shell access.
+
+5. Set up your identity
+Amys-MacBook-Pro:.ssh root# git config --global user.name "amyng95132"
+Amys-MacBook-Pro:.ssh root# git config --global user.email "amyng95132@yahoo.com"
+Amys-MacBook-Pro:.ssh root# git config --list
+user.name=amyng95132
+user.email=amyng95132@yahoo.com
+
+6.Check your user config
+Amys-MacBook-Pro:.ssh root# git config user.email
+amyng95132@yahoo.com
+
+
